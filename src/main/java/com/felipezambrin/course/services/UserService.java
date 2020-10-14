@@ -23,4 +23,8 @@ public class UserService {
 		Optional<User> obj = repository.findById(id); //findById do JpaRepository retorna um Optional
 		return obj.get();
 	}
+	
+	public User insert(User obj) {
+		return repository.save(obj);
+	}
 }
