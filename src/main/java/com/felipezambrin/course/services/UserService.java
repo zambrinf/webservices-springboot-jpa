@@ -32,5 +32,16 @@ public class UserService {
 		repository.deleteById(id);
 	}
 	
-	
+	public User update(Long id, User obj) {
+		User entity = repository.getOne(id); // getOne só deixa um objeto monitorado pelo JPA para depois fazer uma operação no DB, mais eficiente do que o findById
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(User entity, User obj) {
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
+		entity.setPhone(obj.getPhone());
+		// não colocar Id e Senha para não permitir essa alteração
+	}
 }
